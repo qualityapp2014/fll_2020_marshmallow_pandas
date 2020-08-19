@@ -1,2 +1,2 @@
 # FLL 2020 - Marshmallow Pandas
-Repository of FLL 2020 projects for the team Marshmallow Pandas
+Repository for FLL 2020 projects of the team Marshmallow Pandas
