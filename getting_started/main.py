@@ -27,10 +27,10 @@ def main():
 
     # Move the robots
     robot.straight(500)
-    # robot.turn(180)
-    # robot.drive(300, 40)
-    # wait(3000)
-    # robot.stop()
+    robot.turn(180)
+    robot.drive(300, 40)
+    wait(3000)
+    robot.stop()
 
     # Complete the mission
     ev3.speaker.say('Mission completed!')
