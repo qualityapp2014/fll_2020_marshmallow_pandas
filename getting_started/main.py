@@ -10,26 +10,26 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 # This program requires LEGO EV3 MicroPython v2.0 or higher.
 # Click "Open user guide" on the EV3 extension tab for more information.
 
+# Create your objects here.
+ev3 = EV3Brick()
+ev3.speaker.set_speech_options('en', 'm1', 160, None)
+
+# Initialize the robots
+left_motor = Motor(Port.B)
+right_motor = Motor(Port.C)
+robot = DriveBase(left_motor, right_motor, 50, 100)
+robot.settings(200, 400, 90, 180)
+
 def main():
-    # Create your objects here.
-    ev3 = EV3Brick()
-    ev3.speaker.set_speech_options('en', 'f1', 160, None)
-
-    # Initialize the robots
-    left_motor = Motor(Port.B)
-    right_motor = Motor(Port.C)
-    robot = DriveBase(left_motor, right_motor, 50, 100)
-    robot.settings(200, 400, 90, 180)
-
     # Start the mission
     ev3.light.on(Color.RED)
-    ev3.speaker.say('Marshmallow Panda, Mission 4')
+    ev3.speaker.say('Marshmallow Panda, Demo GO!!!')
 
     # Move the robots
-    robot.straight(500)
-    robot.turn(180)
+    robot.straight(-100)
+    robot.turn(-180)
     robot.drive(300, 40)
-    wait(3000)
+    wait(300)
     robot.stop()
 
     # Complete the mission
