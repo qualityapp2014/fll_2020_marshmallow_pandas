@@ -15,19 +15,19 @@ ev3 = EV3Brick()
 ev3.speaker.set_speech_options('en', 'm1', 160, None)
 
 # Initialize the robots
-left_motor = Motor(Port.B)
-right_motor = Motor(Port.C)
-robot = DriveBase(left_motor, right_motor, 50, 100)
+left_motor = Motor(Port.A)
+right_motor = Motor(Port.B)
+robot = DriveBase(left_motor, right_motor, 80, 80)
 robot.settings(200, 400, 90, 180)
 
 def main():
     # Start the mission
-    ev3.light.on(Color.RED)
-    ev3.speaker.say('Marshmallow Panda, Demo GO!!!')
+    ev3.light.on(Color.YELLOW)
+    ev3.speaker.say('Marshmallow Panda, getting started!')
 
     # Move the robots
-    robot.straight(-100)
-    robot.turn(-180)
+    robot.straight(100)
+    robot.turn(90)
     robot.drive(300, 40)
     wait(300)
     robot.stop()
