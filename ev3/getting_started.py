@@ -28,7 +28,7 @@ def main():
     # Move the robots
     robot.straight(100)
     robot.turn(90)
-    robot.drive(300, 40)
+    robot.drive(300, 0)
     wait(300)
     robot.stop()
 
