@@ -16,3 +16,6 @@ robot.settings(400, 100, 90, 45)
 
 #Going back from the mission
 robot.straight(1000)
+
+
+
