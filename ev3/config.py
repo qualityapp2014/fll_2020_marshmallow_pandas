@@ -10,6 +10,8 @@ ev3.speaker.set_speech_options('en', 'f1', 160, None)
 # Configure drive motors
 motor_left = Motor(Port.A, Direction.COUNTERCLOCKWISE)
 motor_right = Motor(Port.D, Direction.COUNTERCLOCKWISE)
+left_motor = motor_left
+right_motor = motor_right
 robot = DriveBase(motor_left, motor_right, 87, 111)
 robot.settings(400, 100, 90, 45)
 

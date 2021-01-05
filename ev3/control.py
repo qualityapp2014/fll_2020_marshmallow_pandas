@@ -1,7 +1,4 @@
-
-
-
-
+from config import *
 
 def move_motor(target, speed=100):
     left_motor.reset_angle(0)
@@ -38,6 +35,27 @@ def move(distance, acceleration=100, interval=1, gyro_scaler=10):
         turn_rate = angle * gyro_scaler
         print('distance: {}, gyro angle: {}, turn rate: {}'.format(current_distance, angle, turn_rate))
         robot.drive(speed, turn_rate)
+        wait(interval)
+
+    robot.stop()
+
+def move2(distance, acceleration=100, interval=1, gyro_scaler=3):
+    turn_rate = 0
+    speed = 0
+    direction = 1 if distance > 0 else -1
+    speed_delta = direction * acceleration / interval
+    
+    robot.reset()
+    gyro.reset_angle(0)
+    while True:
+        current_distance = robot.distance()
+        if current_distance * direction >= distance * direction:
+            break
+
+        angle = gyro.angle()
+        turn_rate = -angle * gyro_scaler
+        print('distance: {}, gyro angle: {}, turn rate: {}'.format(current_distance, angle, turn_rate))
+        robot.drive(speed_delta, turn_rate)
         wait(interval)
 
     robot.stop()
