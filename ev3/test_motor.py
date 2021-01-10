@@ -4,3 +4,5 @@ from control import *
 
 
 robot.stop()
+
+move2(10)
