@@ -1,9 +1,13 @@
 #!/usr/bin/env pybricks-micropython
-from robot_control import *
+from robot import *
 
-turn_gyro(40, 75)
-move_distance(400, 200)
-turn_gyro(-32, 100)
-move_distance(300, 100, line_delta=20)
 
-stop_motors(0)
+def run():
+    r = Robot(20)
+    stop = False
+
+    r.turn(32, 100, 45, stop=stop)
+    r.move(600, 100, stop=stop)
+    r.turn(-32, 100, 45, stop=stop)
+    r.follow(250, 100, stop=stop)
+    r.stop()
