@@ -16,6 +16,15 @@ def clip(x, min, max):
     return x
 
 
+def is_black_white(sensor):
+    color = sensor.color()
+    return color == Color.WHITE or color == Color.BLACK
+
+
+def find_lane():
+    is_black_white(color_left) and is_black_white(color_right)
+
+
 GYRO_PID = [0.3, 0.2, 0.2, 0.3]
 LINE_PID = [20, 5, 5, 0.5]
 
@@ -49,6 +58,7 @@ class Robot:
             self.set_speed(0, 0)
             while not self.done():
                 self.update()
+            robot.stop()
 
     def reset(self):
         state = robot.state()
@@ -59,6 +69,7 @@ class Robot:
     def set_speed(self, speed, turn_rate):
         self.speed = speed
         self.turn_rate = turn_rate
+        self.update()
 
     def done(self):
         return abs(self.speed_last - self.speed) < 0.001
@@ -74,13 +85,11 @@ class Robot:
         self.speed_last += delta
         robot.drive(self.speed_last, self.turn_rate)
         
-    def move(self, distance, speed, turn_rate=0, gyro_pid=None, gyro_angle=None, stop=False):
-        print("Move: ", distance, speed, turn_rate)
+    def move(self, distance, speed, gyro_pid=None, gyro_angle=None, terminate=None, stop=False):
+        print("Move:", distance, speed)
         self.reset()
 
-        if gyro_angle is None:
-            gyro_angle = 0
-            gyro.reset_angle(0)
+        target_angle = gyro_angle or gyro.angle()
 
         direction = sign(distance)
         target = direction * distance
@@ -89,26 +98,28 @@ class Robot:
 
         pid = PID(gyro_pid or GYRO_PID)
         while robot.distance() * direction < target:
-            delta = pid.delta(gyro_angle - gyro.angle())
-            self.set_speed(speed_direction, turn_rate + delta)
+            if terminate is not None and terminate():
+                break
+            delta = pid.delta(target_angle - gyro.angle())
+            self.set_speed(speed_direction, delta)
             self.update()
         self.stop(stop)
-        print("Done: ", robot.distance(), gyro.angle())
+        print("Done:", robot.distance(), gyro.angle())
         
-    def turn(self, angle, speed, turn_rate, stop=False):
-        print("Turn", angle, speed, turn_rate)
-        direction = sign(angle)
-        target = angle * direction
-        self.set_speed(speed, turn_rate * direction)
-        gyro.reset_angle(0)
+    def turn(self, target_angle, speed, turn_rate, stop=False):
+        current_angle = gyro.angle()
+        print("Turn:", target_angle, speed, turn_rate, current_angle)
 
-        while gyro.angle() * direction < target:
+        direction = sign(target_angle - current_angle)
+        self.set_speed(speed, turn_rate * direction)
+        
+        while (target_angle - gyro.angle()) * direction > 0:
             self.update()
         self.stop(stop)
-        print("Done: ", gyro.angle())
+        print("Done:", gyro.angle())
 
     def follow(self, distance, speed, line_pid=None, stop=False):
-        print("Follow: ", distance, speed, line_pid)
+        print("Follow:", distance, speed, line_pid)
         self.reset()
 
         direction = sign(distance)
