@@ -3,7 +3,7 @@ from robot import *
 
 
 def run():
-    r = Robot(10)
+    r = Robot(20)
     gyro.reset_angle(0)
 
     r.move(200, 100)
