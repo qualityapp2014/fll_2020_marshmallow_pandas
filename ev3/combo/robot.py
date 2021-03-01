@@ -16,16 +16,20 @@ def clip(x, min, max):
     return x
 
 
-def find_lane():
-    return color_left.color() == Color.BLACK or color_right.color() == Color.BLACK
+def is_black(reflection):
+    return reflection < 15
 
 
-def get_color_delta(color):
-    return sum(color.rgb()) / 150 - 1
+def is_white(reflection):
+    return reflection > 88
+
+
+def get_delta(reflection):
+    return reflection / 50 - 1
 
 
 GYRO_PID = [0.3, 0.2, 0.2, 0.3]
-LINE_PID = [1, 2, 1, 0.3]
+LINE_PID = [3, 5, 2, 0.3]
 
 
 class PID:
@@ -122,7 +126,7 @@ class Robot:
         self.stop(stop)
         print("Done:", gyro.angle())
 
-    def follow(self, distance, speed, use_left=True, line_delta=30, line_pid=None, stop=False):
+    def follow(self, distance, speed, use_left=True, line_delta=20, line_pid=None, stop=False):
         print("Follow:", distance, speed, line_pid)
         self.reset()
 
@@ -139,30 +143,22 @@ class Robot:
                 print(state)
                 state_prev = state
 
-            left = color_left.color()
-            right = color_right.color()
+            left = color_left.reflection()
+            right = color_right.reflection()
             if state == "find_lane_black":
-                if left == Color.BLACK or right == Color.BLACK:
+                if is_black(left) or is_black(right):
                     state = "find_lane_white"
-                    adjust = -line_delta if left == Color.BLACK else line_delta
-                    self.set_speed(speed_direction, adjust * direction)
+                    if is_black(left):
+                        self.set_speed(speed_direction, -line_delta * direction)
+                    else:
+                        self.set_speed(speed_direction, line_delta * direction)
             elif state == "find_lane_white":
-                if left == Color.WHITE and right == Color.WHITE:
+                if is_white(left) and is_white(right):
                     state = "find_edge"
                     pid = PID(line_pid or LINE_PID)
                     self.set_speed(speed_direction, 0)
             elif state == 'find_edge':
-                if left == Color.BLACK or right == Color.BLACK:
-                    state = "find_lane_white"
-                    adjust = -line_delta if left == Color.BLACK else line_delta
-                    self.set_speed(speed_direction, adjust * direction)
-                else:
-                    if use_left:
-                        color = color_left
-                        adjust = 1
-                    else:
-                        color = color_right
-                        adjust = -1
-                    self.set_speed(speed_direction, pid.delta(adjust * direction * get_color_delta(color))) 
+                delta = direction * get_delta(left) if use_left else -direction * get_delta(right)
+                self.set_speed(speed_direction, pid.delta(delta))
             self.update()
         self.stop(stop)
