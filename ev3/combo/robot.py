@@ -45,7 +45,6 @@ class PID:
         self.error_i = self.error_i * self.decay + error
         error_d = 0 if self.error_last is None else error - self.error_last
         self.error_last = error
-        #print("PID:", error, self.error_i, error_d, error * self.kp + self.error_i * self.ki + error_d * self.kd)
         return error * self.kp + self.error_i * self.ki + error_d * self.kd
 
 
@@ -71,7 +70,7 @@ class Robot:
         robot.reset()
 
     def set_speed(self, speed, turn_rate):
-        print("SPEED:", speed, turn_rate)
+        #print("SPEED:", speed, turn_rate)
         self.speed = speed
         self.turn_rate = turn_rate
         self.update()
