@@ -29,7 +29,7 @@ def get_delta(reflection):
 
 
 GYRO_PID = [0.3, 0.2, 0.2, 0.3]
-LINE_PID = [3, 5, 2, 0.3]
+LINE_PID = [5, 5, 2, 0.3]
 
 
 class PID:
