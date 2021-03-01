@@ -16,17 +16,20 @@ def clip(x, min, max):
     return x
 
 
-def is_black_white(sensor):
-    color = sensor.color()
-    return color == Color.WHITE or color == Color.BLACK
+def is_black(reflection):
+    return reflection < 15
 
 
-def find_lane():
-    is_black_white(color_left) and is_black_white(color_right)
+def is_white(reflection):
+    return reflection > 88
+
+
+def get_delta(reflection):
+    return reflection / 50 - 1
 
 
 GYRO_PID = [0.3, 0.2, 0.2, 0.3]
-LINE_PID = [20, 5, 5, 0.5]
+LINE_PID = [3, 5, 2, 0.3]
 
 
 class PID:
@@ -46,7 +49,7 @@ class PID:
 
 
 class Robot:
-    def __init__(self, accel):
+    def __init__(self, accel=20):
         self.accel = accel
         self.speed = 0
         self.speed_last = 0
@@ -67,6 +70,7 @@ class Robot:
         robot.reset()
 
     def set_speed(self, speed, turn_rate):
+        #print("SPEED:", speed, turn_rate)
         self.speed = speed
         self.turn_rate = turn_rate
         self.update()
@@ -104,7 +108,10 @@ class Robot:
             self.set_speed(speed_direction, delta)
             self.update()
         self.stop(stop)
-        print("Done:", robot.distance(), gyro.angle())
+
+        distance = robot.distance()
+        print("Done:", distance, gyro.angle())
+        return distance
         
     def turn(self, target_angle, speed, turn_rate, stop=False):
         current_angle = gyro.angle()
@@ -118,7 +125,7 @@ class Robot:
         self.stop(stop)
         print("Done:", gyro.angle())
 
-    def follow(self, distance, speed, line_pid=None, stop=False):
+    def follow(self, distance, speed, use_left=True, line_delta=20, line_pid=None, stop=False):
         print("Follow:", distance, speed, line_pid)
         self.reset()
 
@@ -127,21 +134,30 @@ class Robot:
         speed_direction = speed * direction
         self.set_speed(speed_direction, 0)
 
-        pid = PID(line_pid or LINE_PID)
-        adjust = 0
+        state = "find_lane_black"
+        state_prev = None
 
         while robot.distance() * direction < target:
-            left_color = color_left.color()
-            right_color = color_right.color()
+            if state != state_prev:
+                print(state)
+                state_prev = state
 
-            if adjust == 0:
-                if left_color == Color.BLACK:
-                    adjust = -1
-                elif right_color == Color.BLACK:
-                    adjust = 1
-            elif left_color == Color.WHITE and right_color == Color.WHITE:
-                adjust = 0
-
-            self.set_speed(speed_direction, pid.delta(adjust) * direction)
+            left = color_left.reflection()
+            right = color_right.reflection()
+            if state == "find_lane_black":
+                if is_black(left) or is_black(right):
+                    state = "find_lane_white"
+                    if is_black(left):
+                        self.set_speed(speed_direction, -line_delta * direction)
+                    else:
+                        self.set_speed(speed_direction, line_delta * direction)
+            elif state == "find_lane_white":
+                if is_white(left) and is_white(right):
+                    state = "find_edge"
+                    pid = PID(line_pid or LINE_PID)
+                    self.set_speed(speed_direction, 0)
+            elif state == 'find_edge':
+                delta = direction * get_delta(left) if use_left else -direction * get_delta(right)
+                self.set_speed(speed_direction, pid.delta(delta))
             self.update()
         self.stop(stop)
