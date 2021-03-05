@@ -3,34 +3,48 @@ from robot import *
 
 
 def run():
-    r = Robot(20)
+    r = Robot()
     gyro.reset_angle(0)
 
-    r.move(200, 100)
-    r.follow(230, 100)
-    r.turn(-45, 100, 50)
-    r.follow(200, 100)
+    # Move to location
+    r.move(200, 200)
+    r.follow(260, 100, find_lane=True)
+    r.turn(-51, 100, 50)
+    r.follow(260, 100)
 
+    # Measure distance and turn
     distance = ultrasonic.distance()
     print("Distance", distance)
-    distance_next = clip(110 + 550 - distance, 50, 200)
-    r.move(distance_next, 100)
+    distance_next = clip(50 + 660 - distance, 0, 200)
+    r.follow(distance_next, 50, stop=True)
     print("Distance", ultrasonic.distance())
 
-    r.turn(-110, 0, 50)
-    r.move(60, 50)
-    r.stop()
+    # Flip the block
+    motor_med_right.run_angle(1000, -2500)
+    motor_med_right.run_angle(1000, -1500, wait=False)
+    
+    # Basketball
+    r.turn(-118, 0, 50)
+    r.move(80, 50)
+    r.turn(-113, 0, 50)
+    r.move(20, 50, stop=True)
+    
+    motor_med_left.run_angle(1000, -1180)
+    motor_med_left.run_angle(1000, 300)
+    motor_med_left.run_angle(1000, 880, wait=False)
+    r.move(-100, 100)
+    motor_med_right.run_angle(1000, 3700, wait=False)
+    r.move(-80, 50)
 
-    motor_med_right.run_angle(400, 2000)
-    r.turn(-110, 0, 50)
-    r.move(50, 50)
-    r.stop()
-    motor_med_left.run_angle(400, -1150)
-    motor_med_left.run_angle(400, 1150, wait=False)
-    r.stop()
+    # Pick health unit
+    r.turn(-138, 0, 50)
+    r.follow(200, 50, use_left=False)
 
-    r.move(-100, 50)
-    r.stop()
-    motor_med_right.run_angle(400, -2000)
+    motor_med_right.run_angle(1000, -3000, wait=False)
+    r.turn(-35, -150, 45)
+    r.move(-600, 400, stop=True)
+    motor_med_right.run_angle(1000, 3300, wait=False)    
+    return
+
 
 run()

@@ -29,7 +29,7 @@ def get_delta(reflection):
 
 
 GYRO_PID = [0.3, 0.2, 0.2, 0.3]
-LINE_PID = [3, 5, 2, 0.3]
+LINE_PID = [5, 5, 2, 0.3]
 
 
 class PID:
@@ -61,7 +61,7 @@ class Robot:
             self.set_speed(0, 0)
             while not self.done():
                 self.update()
-            robot.stop()
+            robot.drive(0, 0)
 
     def reset(self):
         state = robot.state()
@@ -125,7 +125,7 @@ class Robot:
         self.stop(stop)
         print("Done:", gyro.angle())
 
-    def follow(self, distance, speed, use_left=True, line_delta=20, line_pid=None, stop=False):
+    def follow(self, distance, speed, use_left=True, line_delta=20, line_pid=None, find_lane=False, stop=False):
         print("Follow:", distance, speed, line_pid)
         self.reset()
 
@@ -134,8 +134,9 @@ class Robot:
         speed_direction = speed * direction
         self.set_speed(speed_direction, 0)
 
-        state = "find_lane_black"
+        state = "find_lane_black" if find_lane else 'find_edge'
         state_prev = None
+        pid = PID(line_pid or LINE_PID)
 
         while robot.distance() * direction < target:
             if state != state_prev:
@@ -154,7 +155,6 @@ class Robot:
             elif state == "find_lane_white":
                 if is_white(left) and is_white(right):
                     state = "find_edge"
-                    pid = PID(line_pid or LINE_PID)
                     self.set_speed(speed_direction, 0)
             elif state == 'find_edge':
                 delta = direction * get_delta(left) if use_left else -direction * get_delta(right)
