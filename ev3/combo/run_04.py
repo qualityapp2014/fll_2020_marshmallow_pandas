@@ -20,19 +20,17 @@ def run():
     r.move(-50,100, stop = debugmode)    
             
     #following code intendes to hang the objects in place
-    r.turn(-80, -20, 50, stop = True)
-    motor_med_right.run_angle(100, 850)
-    r.move(50,20,stop=True)
-    motor_med_right.run_angle(100,600)
-    r.move(-100,20,stop=True)
+    r.turn(-77, -10, 50, stop = True)
+    motor_med_right.run_angle(100, 920)
+    #r.move(20,20,stop=True)
+    #motor_med_right.run_angle(100,100)
+    r.move(-150,20,stop=True)
+    motor_med_right.run_angle(200, 500)
     
-    #r.follow(150, 100, use_left = True, stop = True)
-    #r.move(195,20)
-    #r.stop()
-    #r.move(-150,100)
-    #r.stop()
-    #r.turn(-70,30,50)
-    #r.stop()
-    #motor_med_right.run(10, 20)
+    #follow the line to the next task
+    r.turn(-90, 0, 50, stop=True)
+    r.follow(200, 100, find_lane=True, stop=True)
+    #r.follow(200, 100, stop = True)
     
+       
 run()
