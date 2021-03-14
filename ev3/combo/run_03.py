@@ -53,4 +53,6 @@ def run():
     r.move(-500, 400, stop=True)
     motor_med_right.run_angle(1000, 4100, wait=False)
 
-run()
+
+if __name__ == "__main__":
+    run()
