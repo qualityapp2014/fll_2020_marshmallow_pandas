@@ -1,30 +1,26 @@
 #!/usr/bin/env pybricks-micropython
 from robot import *
 
-
 def run():
-    r = Robot(10)
+    r = Robot(20)
     gyro.reset_angle(0)
 
-    r.move(100, 100)
-    r.turn(-28, 0, 50)
+    # Turn and move to the bench
+    # Attachment will trigger and pick up
+    r.turn(-20, 100, 20)
+    r.turn(9, 100, 20)
+    r.move(120, 100, stop=True)
 
-    r.move(100, 100)
-    r.turn(10, 0, 30)
-    r.move(160, 100)
+    # Move back and turn 180 to drop the cubes
+    r.move(-60, 100)
+    r.turn(184, 10, 70)
+    r.move(-120, 100)
+    r.move(-30, 50)
+    r.stop()
 
-    r.move(-50, 100)
-    r.turn(190, 0, 50)
-
-    
-    r.move(100, 100)
-    r.turn(210, 0, 50)
-    r.move(-150, 100)
-    r.turn(197, 0, 20)
-
-    r.move(-160, 100)
-    r.move(270, 150)
-
+    # Move back to base
+    r.move(50, 200)
+    r.turn(180, 200, 10)
     r.stop()
 
 run()
