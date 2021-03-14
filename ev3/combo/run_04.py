@@ -35,4 +35,5 @@ def run():
     #r.stop()
     #motor_med_right.run(10, 20)
     
-run()
+if __name__ == "__main__":
+    run()

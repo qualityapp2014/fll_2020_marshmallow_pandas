@@ -1,12 +1,21 @@
 #!/usr/bin/env pybricks-micropython
 from config import *
 
+import run_01
+import run_02
 import run_03
+import run_04
 
 
 def run(number):
+    if number == 1:
+        run_01.run()
+    if number == 2:
+        run_02.run()
     if number == 3:
         run_03.run()
+    if number == 4:
+        run_04.run()
 
 
 def main():
@@ -18,7 +27,7 @@ def main():
     while True:
         buttons = ev3.buttons.pressed()
         if Button.CENTER in buttons:
-            ev3.screen.print("Launching Run", number)
+            ev3.screen.print("Starting Run", number)
             run(number)
         elif Button.DOWN in buttons:
             if number < 5:
