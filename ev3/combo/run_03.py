@@ -6,7 +6,7 @@ def run():
     r = Robot()
     gyro.reset_angle(0)
 
-    # Move to the right lane
+    # Move to the center lane
     r.move(200, 200)
     r.follow(260, 100, find_lane=True)
     r.turn(-51, 100, 50)
@@ -23,16 +23,22 @@ def run():
     motor_med_right.run_angle(1000, -2600)
     motor_med_right.run_angle(1000, -1500, wait=False)
     
-    # Basketball
+    # Drop the basketball
     r.turn(-118, 70, 50)
     r.move(60, 50)
+    # Reduce speed and overrun a bit to ensure good contact
     r.move(10, 20)
+    
+    # Move back to fit fork lift
     r.move(-30, 50)
     r.turn(-115, 40, 50, stop=True)
     
+    # Lift crate
     motor_med_left.run_angle(1000, -1140)
     motor_med_left.run_angle(1000, 1140, wait=False)
     wait(300)
+
+    # Back off and set arm for health unit
     r.move(-100, 100)
     motor_med_right.run_angle(1000, 3800, wait=False)
     r.move(-100, 100)
@@ -41,6 +47,7 @@ def run():
     r.turn(-136, 0, 50)
     r.follow(200, 50, use_left=False)
 
+    # Return to the base
     motor_med_right.run_angle(1000, -3800, wait=False)
     r.turn(-35, -100, 30)
     r.move(-500, 400, stop=True)
