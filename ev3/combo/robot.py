@@ -123,6 +123,7 @@ class Robot:
     def turn(self, target_angle, speed, turn_rate, stop=False, terminate=None):
         current_angle = gyro.angle()
         print("Turn:", target_angle, speed, turn_rate, current_angle)
+        self.reset()
 
         direction = sign(target_angle - current_angle)
         self.set_speed(speed, turn_rate * direction)
