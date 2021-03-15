@@ -207,7 +207,15 @@ def move2(distance):
 
     robot.stop()
 
+<<<<<<< HEAD
 def move_pid_gyro(distance, target_angle=0, max_speed=300, min_speed=30, max_turn_rate = 40):
+=======
+<<<<<<< HEAD
+def move_pid_gyro(distance, target_angle=0, max_speed=300, min_speed=30):
+=======
+def move_pid_gyro(distance, target_angle=0, max_speed=300, min_speed=30, max_turn_rate = 40):
+>>>>>>> 2b70b90b8826433273b749bd434bf4ef64251666
+>>>>>>> ab4b63078163923e6efcf58af0b5ea5e373d9dcc
     """ Move with a target turning angle and distance """
     # modified from move2 by Yan, if target_angle is set to 0, then it moves along a straight line
 
@@ -220,12 +228,29 @@ def move_pid_gyro(distance, target_angle=0, max_speed=300, min_speed=30, max_tur
 
     max_angle_error_i = 5 # bound on error integral
     angle_error_i_decay = 3 # decay on error integral to avoid oscillation around 0
+<<<<<<< HEAD
     #max_turn_rate = 40
 
     #max_speed = 300
     #min_speed = 30
     #ramp_distance = 200 # distance to ramp from min_speed to max_speed and down again
     ramp_distance = 350
+=======
+<<<<<<< HEAD
+    max_turn_rate = 20
+
+    #max_speed = 300
+    #min_speed = 30
+    ramp_distance = 200 # distance to ramp from min_speed to max_speed and down again
+=======
+    #max_turn_rate = 40
+
+    #max_speed = 300
+    #min_speed = 30
+    #ramp_distance = 200 # distance to ramp from min_speed to max_speed and down again
+    ramp_distance = 350
+>>>>>>> 2b70b90b8826433273b749bd434bf4ef64251666
+>>>>>>> ab4b63078163923e6efcf58af0b5ea5e373d9dcc
     ramp_down_distance_mult = 1.5 # sets a longer time to ramp down because of slippage
 
     ###

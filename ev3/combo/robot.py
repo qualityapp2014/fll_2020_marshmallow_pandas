@@ -49,7 +49,7 @@ class PID:
 
 
 class Robot:
-    def __init__(self, accel=20):
+    def __init__(self, accel=10):
         self.accel = accel
         self.speed = 0
         self.speed_last = 0
