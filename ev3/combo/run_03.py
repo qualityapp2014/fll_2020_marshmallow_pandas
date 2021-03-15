@@ -6,13 +6,15 @@ def run():
     r = Robot()
     gyro.reset_angle(0)
 
-    r.move(350, 100)
-    r.move(100, 850)
+    r.move(100, 100)
+    r.follow(290, 100, use_left=False)
+    robot.drive(800, 40)
+    wait(75)
     robot.drive(0, 0)
-    wait(500)
+    wait(1000)
     robot.stop()
-    r.move(-200, 90)
-    r.move(-300, 700)
+    r.move(-300, 50)
+    r.turn(20, -400, 10)
     r.stop()
 
 if __name__ == "__main__":

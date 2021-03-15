@@ -28,6 +28,13 @@ def get_delta(reflection):
     return reflection / 50 - 1
 
 
+def need_terminate(terminate):
+    if terminate is not None and terminate():
+        print("Terminating")
+        return True
+    return False
+
+
 GYRO_PID = [0.3, 0.2, 0.2, 0.3]
 LINE_PID = [5, 5, 2, 0.3]
 
@@ -102,7 +109,7 @@ class Robot:
 
         pid = PID(gyro_pid or GYRO_PID)
         while robot.distance() * direction < target:
-            if terminate is not None and terminate():
+            if need_terminate(terminate):
                 break
             delta = pid.delta(target_angle - gyro.angle())
             self.set_speed(speed_direction, delta)
@@ -113,14 +120,17 @@ class Robot:
         print("Done:", distance, gyro.angle())
         return distance
         
-    def turn(self, target_angle, speed, turn_rate, stop=False):
+    def turn(self, target_angle, speed, turn_rate, stop=False, terminate=None):
         current_angle = gyro.angle()
         print("Turn:", target_angle, speed, turn_rate, current_angle)
+        self.reset()
 
         direction = sign(target_angle - current_angle)
         self.set_speed(speed, turn_rate * direction)
         
         while (target_angle - gyro.angle()) * direction > 0:
+            if need_terminate(terminate):
+                break
             self.update()
         self.stop(stop)
         print("Done:", gyro.angle())
