@@ -28,7 +28,9 @@ def main():
         buttons = ev3.buttons.pressed()
         if Button.CENTER in buttons:
             ev3.screen.print("Starting Run", number)
+            ev3.light.on(Color.GREEN)
             run(number)
+            ev3.light.on(Color.RED)
         elif Button.DOWN in buttons:
             if number < 5:
                 number += 1
