@@ -14,7 +14,7 @@ def run():
     r.move(200, 200)
     r.follow(260, 100, find_lane=True)
     r.turn(-51, 100, 50)
-    motor_med_right.run_angle(1000, -2000, wait=False)
+    motor_med_right.run_angle(1000, -1800, wait=False)
     r.follow(260, 100)
 
     # Measure distance and turn
@@ -25,22 +25,23 @@ def run():
     print("Distance", ultrasonic.distance())
 
     # Flip the blue block
-    motor_med_right.run_angle(1000, -2100, wait=False)
-    wait(700)
+    motor_med_right.run_angle(1000, -2300, wait=False)
+    wait(1000)
 
     # Drop the basketball
-    r.turn(-118, 40, 20)
+    r.turn(-110, 20, 20)
     # Reduce speed and overrun a bit to ensure good contact
-    r.move(70, 30)
+    r.move(70, 50)
+    r.move(25, 30)
     
     # Move back to fit fork lift
     r.move(-50, 50)
-    r.turn(-116, 0, 30)
+    r.turn(-108, 0, 20)
     r.move(40, 30, stop=True)
     
     # Lift crate
-    motor_med_left.run_angle(1000, -1160)
-    motor_med_left.run_angle(1000, 1160, wait=False)
+    motor_med_left.run_angle(1000, -1170)
+    motor_med_left.run_angle(1000, 1170, wait=False)
     wait(300)
 
     # Back off and set arm for health unit
@@ -48,7 +49,7 @@ def run():
     motor_med_right.run_angle(1000, 3700, wait=False)
 
     # Find lane by checking on white color
-    r.turn(-130, -100, 50)
+    r.turn(-120, -100, 50)
     r.turn(-150, 0, 20, terminate=is_right_white)
 
     # Follow the line to pick up the health unit
@@ -57,7 +58,7 @@ def run():
     # Return to the base
     motor_med_right.run_angle(1000, -3700, wait=False)
     r.move(-50, 200)
-    r.turn(-25, -100, 60)
+    r.turn(-40, -100, 60)
     r.move(-560, 400, stop=True)
     motor_med_right.run_angle(1000, 4100, wait=False)
 

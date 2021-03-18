@@ -6,15 +6,20 @@ def run():
     r = Robot()
     gyro.reset_angle(0)
 
+    # Move forward and follow the line
     r.move(100, 100)
-    r.follow(290, 100, use_left=False)
-    robot.drive(800, 40)
-    wait(75)
+    r.follow(240, 100, use_left=False)
+
+    # Accelerate and brake suddenly to throw the bar
+    robot.drive(800, 20)
+    wait(100)
     robot.drive(0, 0)
     wait(1000)
     robot.stop()
-    r.move(-300, 50)
-    r.turn(20, -400, 10)
+
+    # Move back
+    r.move(-250, 100)
+    r.turn(20, -500, 10)
     r.stop()
 
 if __name__ == "__main__":
