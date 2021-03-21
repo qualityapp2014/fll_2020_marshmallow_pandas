@@ -2,14 +2,31 @@
 from robot import *
 
 
-def is_right_white():
-    return is_white(color_right.reflection())
-
-
 def run():
     r = Robot()
     gyro.reset_angle(0)
 
+<<<<<<< HEAD
+    # Move forward and follow the line
+    r.move(100, 100)
+    r.follow(240, 150, use_left=False)
+
+    # Accelerate and brake suddenly to throw the bar
+    robot.drive(800, 20)
+    wait(100)
+    robot.drive(0, 0)
+    wait(1000)
+    robot.stop()
+
+    # Move back
+    r.move(-80, 100)
+    r.move(-270, 200)
+    r.turn(20, -500, 10)
+    r.stop()
+    
+    motor_med_left.brake()
+    motor_med_right.brake()
+=======
     # Move to the center lane
     r.move(200, 200)
     r.follow(260, 100, find_lane=True)
@@ -61,6 +78,7 @@ def run():
     r.turn(-40, -100, 60)
     r.move(-560, 400, stop=True)
     motor_med_right.run_angle(1000, 4100, wait=False)
+>>>>>>> master
 
 
 if __name__ == "__main__":

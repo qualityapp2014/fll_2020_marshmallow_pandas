@@ -24,6 +24,14 @@ def is_white(reflection):
     return reflection > 88
 
 
+def is_right_white():
+    return is_white(color_right.reflection())
+
+
+def is_right_black():
+    return is_black(color_right.reflection())
+
+
 def get_delta(reflection):
     return reflection / 50 - 1
 
@@ -35,7 +43,7 @@ def need_terminate(terminate):
     return False
 
 
-GYRO_PID = [0.3, 0.2, 0.2, 0.3]
+GYRO_PID = [1, 0.5, 0.3, 0.3]
 LINE_PID = [5, 5, 2, 0.3]
 
 
@@ -97,10 +105,9 @@ class Robot:
         robot.drive(self.speed_last, self.turn_rate)
         
     def move(self, distance, speed, gyro_pid=None, gyro_angle=None, terminate=None, stop=False):
-        print("Move:", distance, speed)
         self.reset()
-
-        target_angle = gyro_angle or gyro.angle()
+        target_angle = gyro_angle if gyro_angle is not None else gyro.angle()
+        print("Move:", distance, speed, target_angle)
 
         direction = sign(distance)
         target = direction * distance

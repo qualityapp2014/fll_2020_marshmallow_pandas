@@ -31,8 +31,10 @@ def main():
             ev3.light.on(Color.GREEN)
             run(number)
             ev3.light.on(Color.RED)
+            number += 1
+            ev3.screen.print("Run", number)
         elif Button.DOWN in buttons:
-            if number < 5:
+            if number < 4:
                 number += 1
                 ev3.screen.print("Run", number)
                 wait(250)
