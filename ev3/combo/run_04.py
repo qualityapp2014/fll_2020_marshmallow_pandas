@@ -5,39 +5,69 @@ from robot import *
 def move_to_lane(r):
     # Move to lane
     motor_med_right.run_angle(1000, 800, wait=False)
+<<<<<<< HEAD
     r.move(150, 200)
     r.turn(-10, 100, 30)
     r.follow(330, 150)
+=======
+    r.move(150, 100)
+    r.turn(-13, 100, 30)
+    r.follow(350, 100)
+>>>>>>> master
 
 
 def hang_health_unit(r):
     # Hang health units
     r.turn(-51, 0, 50)
+<<<<<<< HEAD
     r.move(40, 50, stop=True, gyro_angle=-53)
     motor_med_right.run_angle(500, 600)
     r.move(-60, 80)
+=======
+    r.move(50, 30, stop=True)
+    motor_med_right.run_angle(400, 600)
+    r.move(-70, 50)
+>>>>>>> master
 
 
 def push_step_counter(r):
     # Push step counter
     r.turn(30, 10, 60)
     r.move(90, 100)
+<<<<<<< HEAD
     r.turn(2, 30, 50)
 
     # Lower the arm at the end to avoid health unit stuck on step counter
     r.move(160, 25, gyro_angle=0)
     motor_med_right.run_angle(1000, 1000, wait=False)
     r.move(60, 25, gyro_angle=0)
+=======
+    r.turn(5, 30, 40)
+
+    # Lower the arm at the end to avoid health unit stuck on step counter
+    r.move(160, 20)
+    motor_med_right.run_angle(1000, 1000, wait=False)
+    r.move(60, 20)
+>>>>>>> master
 
 
 def pass_bridge(r):
     # Turn to pass bridge
+<<<<<<< HEAD
     r.turn(-10, -50, 30)
     motor_med_right.run_angle(1000, 1800, wait=False)
     r.turn(-78, 0, 50)
     r.turn(-90, 0, 20, terminate=is_right_black)
 
     r.follow(320, 100, use_left=False)
+=======
+    r.turn(-10, -50, 20)
+    motor_med_right.run_angle(1000, 1800, wait=False)
+    r.turn(-79, 0, 50)
+
+    r.move(30, 50)
+    r.follow(320, 75, use_left=False)
+>>>>>>> master
     motor_med_right.run_angle(1000, -400, wait=False)
 
     # Measure distance to locate in lane
@@ -50,6 +80,7 @@ def pass_bridge(r):
 
 def drop_cubes(r):
     # Turn the Boccia and flip the cube 
+<<<<<<< HEAD
     r.turn(-72, 20, 20)
     r.turn(-75, -40, 20, stop=True)
     motor_med_right.run_angle(1000, -1400)
@@ -62,17 +93,40 @@ def drop_cubes(r):
     motor_med_right.run_angle(1000, -3800, wait=False)
     r.move(180, 100, stop=True, gyro_angle=-90)
     motor_med_left.run_angle(1000, 1600)
+=======
+    r.turn(-71, 20, 20)
+    r.turn(-75, -50, 20, stop=True)
+    motor_med_right.run_angle(1000, -1200)
+
+    # Drop the cubes
+    motor_med_right.run_angle(1000, 800, wait=False)
+    wait(500)
+    r.turn(-85, 20, 30)
+    motor_med_right.run_angle(1000, -3400, wait=False)
+    r.move(170, 50, stop=True)
+    motor_med_left.run_angle(1000, 1600)
+
+>>>>>>> master
     motor_med_left.run_angle(1000, -1600, wait=False)
 
 
 def dance(r):
     # Dance floor
+<<<<<<< HEAD
     r.turn(-145, -30, 100)
     r.move(200, 150, stop=True)
     while True:
         r.turn(-145, 0, 30)
         r.turn(-135, 0, 30)
         r.move(-10, 20)
+=======
+    r.turn(-140, -10, 50)
+    r.move(200, 100, stop=True)
+    while True:
+        r.turn(-145, 0, 50)
+        r.turn(-135, 0, 50)
+        r.move(-20, 50)
+>>>>>>> master
 
 
 def run():
@@ -91,6 +145,10 @@ def run():
 
     dance(r)
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> master
 if __name__ == "__main__":
     run()

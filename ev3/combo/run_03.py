@@ -6,6 +6,7 @@ def run():
     r = Robot()
     gyro.reset_angle(0)
 
+<<<<<<< HEAD
     # Move to the center lane
     r.move(200, 200)
     r.follow(260, 150, find_lane=True)
@@ -61,6 +62,23 @@ def run():
     motor_med_left.brake()
     motor_med_right.brake()
 
+=======
+    # Move forward and follow the line
+    r.move(100, 100)
+    r.follow(240, 100, use_left=False)
+
+    # Accelerate and brake suddenly to throw the bar
+    robot.drive(800, 20)
+    wait(100)
+    robot.drive(0, 0)
+    wait(1000)
+    robot.stop()
+
+    # Move back
+    r.move(-250, 100)
+    r.turn(20, -500, 10)
+    r.stop()
+>>>>>>> master
 
 if __name__ == "__main__":
     run()
