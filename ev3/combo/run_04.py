@@ -5,17 +5,18 @@ from robot import *
 def move_to_lane(r):
     # Move to lane
     motor_med_right.run_angle(1000, 800, wait=False)
-    r.move(150, 100)
-    r.turn(-12, 100, 30)
-    r.follow(350, 100)
+    r.move(150, 200)
+    r.turn(-10, 100, 30)
+    r.follow(330, 150)
 
 
 def hang_health_unit(r):
     # Hang health units
     r.turn(-51, 0, 50)
-    r.move(50, 30, stop=True, gyro_angle=-53)
+    r.move(40, 50, stop=True, gyro_angle=-53)
     motor_med_right.run_angle(500, 600)
-    r.move(-70, 50)
+    r.move(-60, 80)
+
 
 def push_step_counter(r):
     # Push step counter
@@ -24,9 +25,9 @@ def push_step_counter(r):
     r.turn(2, 30, 50)
 
     # Lower the arm at the end to avoid health unit stuck on step counter
-    r.move(160, 20, gyro_angle=0)
+    r.move(160, 25, gyro_angle=0)
     motor_med_right.run_angle(1000, 1000, wait=False)
-    r.move(70, 20, gyro_angle=0)
+    r.move(60, 25, gyro_angle=0)
 
 
 def pass_bridge(r):
@@ -34,9 +35,9 @@ def pass_bridge(r):
     r.turn(-10, -50, 30)
     motor_med_right.run_angle(1000, 1800, wait=False)
     r.turn(-78, 0, 50)
-    r.turn(-90, 0, 10, terminate=is_right_black)
+    r.turn(-90, 0, 20, terminate=is_right_black)
 
-    r.follow(320, 75, use_left=False)
+    r.follow(320, 100, use_left=False)
     motor_med_right.run_angle(1000, -400, wait=False)
 
     # Measure distance to locate in lane
@@ -60,14 +61,14 @@ def drop_cubes(r):
     r.turn(-88, 50, 30)
     motor_med_right.run_angle(1000, -3800, wait=False)
     r.move(180, 100, stop=True, gyro_angle=-90)
-    motor_med_left.run_angle(1000, 1500)
-    motor_med_left.run_angle(1000, -1500, wait=False)
+    motor_med_left.run_angle(1000, 1600)
+    motor_med_left.run_angle(1000, -1600, wait=False)
 
 
 def dance(r):
     # Dance floor
-    r.turn(-145, -30, 60)
-    r.move(200, 100, stop=True)
+    r.turn(-145, -30, 100)
+    r.move(200, 150, stop=True)
     while True:
         r.turn(-145, 0, 30)
         r.turn(-135, 0, 30)
@@ -90,6 +91,6 @@ def run():
 
     dance(r)
 
-    
+
 if __name__ == "__main__":
     run()

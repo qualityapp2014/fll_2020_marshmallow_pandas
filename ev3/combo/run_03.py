@@ -8,7 +8,7 @@ def run():
 
     # Move to the center lane
     r.move(200, 200)
-    r.follow(260, 100, find_lane=True)
+    r.follow(260, 150, find_lane=True)
     r.turn(-51, 100, 50)
     motor_med_right.run_angle(1000, 2200, wait=False)
     r.follow(260, 100)
@@ -27,8 +27,8 @@ def run():
     # Drop the basketball
     r.turn(-112, 0, 50)
     # Reduce speed and overrun a bit to ensure good contact
-    r.move(90, 100, gyro_angle=-118)
-    r.move(30, 20, gyro_angle=-118)
+    r.move(100, 100, gyro_angle=-118)
+    r.move(20, 20, gyro_angle=-118)
     
     # Move back to fit fork lift
     r.move(-50, 50)
@@ -46,7 +46,7 @@ def run():
     motor_med_right.run_angle(1000, 3800, wait=False)
 
     # Find lane by checking on white color
-    r.turn(-120, -100, 50)
+    r.turn(-124, -100, 50)
     r.turn(-150, 0, 20, terminate=is_right_white)
 
     # Follow the line to pick up the health unit
@@ -55,8 +55,11 @@ def run():
     # Return to the base
     motor_med_right.run_angle(1000, -3800, wait=False)
     r.move(-80, 30)
-    r.turn(-30, -100, 70)
+    r.turn(-30, -100, 60)
     r.move(-560, 400, stop=True)
+
+    motor_med_left.brake()
+    motor_med_right.brake()
 
 
 if __name__ == "__main__":

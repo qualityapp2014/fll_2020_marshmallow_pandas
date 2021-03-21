@@ -8,7 +8,7 @@ def run():
 
     # Move forward and follow the line
     r.move(100, 100)
-    r.follow(240, 100, use_left=False)
+    r.follow(240, 150, use_left=False)
 
     # Accelerate and brake suddenly to throw the bar
     robot.drive(800, 20)
@@ -18,9 +18,14 @@ def run():
     robot.stop()
 
     # Move back
-    r.move(-250, 100)
+    r.move(-80, 100)
+    r.move(-270, 200)
     r.turn(20, -500, 10)
     r.stop()
+    
+    motor_med_left.brake()
+    motor_med_right.brake()
+
 
 if __name__ == "__main__":
     run()
