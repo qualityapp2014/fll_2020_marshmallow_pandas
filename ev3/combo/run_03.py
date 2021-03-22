@@ -6,12 +6,11 @@ def run():
     r = Robot()
     gyro.reset_angle(0)
 
-<<<<<<< HEAD
     # Move to the center lane
     r.move(200, 200)
     r.follow(260, 150, find_lane=True)
     r.turn(-51, 100, 50)
-    motor_med_right.run_angle(1000, 2200, wait=False)
+    motor_med_right.run_angle(1000, 2300, wait=False)
     r.follow(260, 100)
 
     # Measure distance and turn
@@ -22,14 +21,14 @@ def run():
     print("Distance", ultrasonic.distance())
 
     # Flip the blue block
-    motor_med_right.run_angle(1000, -2200, wait=False)
+    motor_med_right.run_angle(1000, -2300, wait=False)
     wait(1000)
 
     # Drop the basketball
-    r.turn(-112, 0, 50)
+    r.turn(-112, 0, 30)
     # Reduce speed and overrun a bit to ensure good contact
-    r.move(100, 100, gyro_angle=-118)
-    r.move(20, 20, gyro_angle=-118)
+    r.move(90, 100, gyro_angle=-118)
+    r.move(30, 20, gyro_angle=-118)
     
     # Move back to fit fork lift
     r.move(-50, 50)
@@ -44,7 +43,7 @@ def run():
 
     # Back off and set arm for health unit
     r.move(-120, 100)
-    motor_med_right.run_angle(1000, 3800, wait=False)
+    motor_med_right.run_angle(1000, 3900, wait=False)
 
     # Find lane by checking on white color
     r.turn(-124, -100, 50)
@@ -54,31 +53,15 @@ def run():
     r.follow(240, 50, use_left=False)
 
     # Return to the base
-    motor_med_right.run_angle(1000, -3800, wait=False)
+    motor_med_right.run_angle(1000, -3900, wait=False)
     r.move(-80, 30)
     r.turn(-30, -100, 60)
-    r.move(-560, 400, stop=True)
+    r.move(-500, 400, stop=True)
 
     motor_med_left.brake()
     motor_med_right.brake()
 
-=======
-    # Move forward and follow the line
-    r.move(100, 100)
-    r.follow(240, 100, use_left=False)
 
-    # Accelerate and brake suddenly to throw the bar
-    robot.drive(800, 20)
-    wait(100)
-    robot.drive(0, 0)
-    wait(1000)
-    robot.stop()
-
-    # Move back
-    r.move(-250, 100)
-    r.turn(20, -500, 10)
-    r.stop()
->>>>>>> master
 
 if __name__ == "__main__":
     run()

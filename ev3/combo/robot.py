@@ -142,7 +142,7 @@ class Robot:
         self.stop(stop)
         print("Done:", gyro.angle())
 
-    def follow(self, distance, speed, use_left=True, line_delta=20, line_pid=None, find_lane=False, stop=False):
+    def follow(self, distance, speed, use_left=True, line_delta=20, line_pid=None, find_lane=False, stop=False, gradient=1):
         print("Follow:", distance, speed, line_pid)
         self.reset()
 
@@ -175,6 +175,6 @@ class Robot:
                     self.set_speed(speed_direction, 0)
             elif state == 'find_edge':
                 delta = direction * get_delta(left) if use_left else -direction * get_delta(right)
-                self.set_speed(speed_direction, pid.delta(delta))
+                self.set_speed(speed_direction, pid.delta(delta * gradient))
             self.update()
         self.stop(stop)
