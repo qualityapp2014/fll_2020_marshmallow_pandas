@@ -19,7 +19,7 @@ def run():
 
     # Move back
     r.move(-80, 150)
-    r.move(-270, 300)
+    r.move(-300, 300)
     r.turn(20, -500, 30)
     r.stop()
     

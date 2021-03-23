@@ -35,8 +35,8 @@ def run():
     
     # Move back to fit fork lift
     r.move(-50, 50)
-    r.turn(-142, 0, 20)
-    r.move(40, 50, gyro_angle=-142, stop=True)
+    r.turn(-142, 0, 40)
+    r.move(40, 50, gyro_angle=-140, stop=True)
     
     # Lift crate
     motor_med_left.run_angle(1000, -1160, wait=False)

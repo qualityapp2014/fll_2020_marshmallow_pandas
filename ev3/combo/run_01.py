@@ -10,7 +10,7 @@ def run():
     r.turn(-20, 100, 20)
     r.turn(10, 100, 20)
     r.move(60, 100, gyro_angle=13)
-    r.move(30, 50, gyro_angle=13, stop=True)
+    r.move(50, 50, gyro_angle=13, stop=True)
 
     # Move back and turn 180 to drop the cubes
     r.move(-80, 100)

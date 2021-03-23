@@ -52,8 +52,8 @@ def pass_bridge(r):
 
 def drop_cubes(r):
     # Turn the Boccia and flip the cube 
-    r.turn(-72, 20, 20)
-    r.turn(-76, -40, 30, stop=True)
+    r.turn(-70, 20, 20)
+    r.turn(-74, -40, 30, stop=True)
     motor_med_right.run_angle(1000, -1400)
 
     # Drop the cubes
