@@ -11,15 +11,15 @@ def run():
     r.follow(240, 150, use_left=False)
 
     # Accelerate and brake suddenly to throw the bar
-    robot.drive(800, 20)
+    robot.drive(800, 10)
     wait(100)
     robot.drive(0, 0)
     wait(1000)
     robot.stop()
 
     # Move back
-    r.move(-80, 100)
-    r.move(-270, 200)
+    r.move(-80, 150)
+    r.move(-270, 300)
     r.turn(20, -500, 30)
     r.stop()
     
