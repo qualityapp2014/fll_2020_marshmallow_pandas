@@ -4,7 +4,7 @@ from robot import *
 
 def move_to_lane(r):
     # Move to lane
-    motor_med_right.run_angle(1000, 800, wait=False)
+    motor_med_right.run_angle(1000, 700, wait=False)
     r.move(150, 200)
     r.turn(-10, 100, 30)
     r.follow(340, 100)
@@ -14,20 +14,20 @@ def hang_health_unit(r):
     # Hang health units
     r.turn(-51, 10, 50)
     r.move(50, 50, stop=True, gyro_angle=-53)
-    motor_med_right.run_angle(500, 700)
+    motor_med_right.run_angle(500, 800)
     r.move(-60, 80)
 
 
 def push_step_counter(r):
     # Push step counter
-    r.turn(30, 30, 50)
-    r.move(90, 100)
-    r.turn(2, 30, 40)
+    r.turn(30, 10, 50)
+    r.move(110, 100)
+    r.turn(2, 10, 30)
 
     # Lower the arm at the end to avoid health unit stuck on step counter
-    r.move(160, 25, gyro_angle=0)
+    r.move(160, 20, gyro_angle=0)
     motor_med_right.run_angle(1000, 1100, wait=False)
-    r.move(60, 25, gyro_angle=0)
+    r.move(60, 20, gyro_angle=0)
 
 
 def pass_bridge(r):
@@ -36,10 +36,10 @@ def pass_bridge(r):
     r.turn(-10, -40, 20)
     motor_med_right.run_angle(1000, 1600, wait=False)
     r.turn(-70, 20, 40)
-    r.turn(-92, -30, 50)
+    r.turn(-91, -30, 40)
 
     # Follow the lane to pass the bridge
-    r.follow(360, 100, use_left=False, gradient=-1)
+    r.follow(360, 75, use_left=False, gradient=-1)
     motor_med_right.run_angle(1000, -500, wait=False)
 
     # Measure distance to locate in lane
@@ -52,7 +52,7 @@ def pass_bridge(r):
 
 def drop_cubes(r):
     # Turn the Boccia and flip the cube 
-    r.turn(-70, 20, 20)
+    r.turn(-71, 30, 20)
     r.turn(-74, -40, 30, stop=True)
     motor_med_right.run_angle(1000, -1400)
 
@@ -64,14 +64,14 @@ def drop_cubes(r):
     motor_med_right.run_angle(1000, -3700, wait=False)
     r.move(180, 100, stop=True, gyro_angle=-90)
     motor_med_left.run_angle(1000, 1800)
-    wait(500)
+    wait(700)
     motor_med_left.run_angle(1000, -1800, wait=False)
 
 
 def dance(r):
     # Dance floor
     r.turn(-150, -30, 60)
-    r.move(200, 200, stop=True)
+    r.move(180, 200, stop=True)
     while True:
         r.turn(-145, 0, 30)
         r.turn(-135, 0, 30)

@@ -9,12 +9,12 @@ def run():
     # Attachment will trigger and pick up
     r.turn(-20, 100, 20)
     r.turn(10, 100, 20)
-    r.move(60, 100, gyro_angle=13)
-    r.move(50, 50, gyro_angle=13, stop=True)
+    r.move(60, 100, gyro_angle=12)
+    r.move(45, 50, gyro_angle=12, stop=True)
 
     # Move back and turn 180 to drop the cubes
     r.move(-80, 100)
-    r.turn(186, 15, 40)
+    r.turn(188, 15, 40)
     r.move(-170, 100, gyro_angle=191)
     r.move(-20, 50, gyro_angle=191)
 

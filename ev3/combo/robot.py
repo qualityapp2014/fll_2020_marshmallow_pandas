@@ -43,7 +43,7 @@ def need_terminate(terminate):
     return False
 
 
-GYRO_PID = [0.5, 0.3, 0.2, 0.3]
+GYRO_PID = [1.0, 0.5, 0.3, 0.3]
 LINE_PID = [5, 5, 2, 0.3]
 
 
