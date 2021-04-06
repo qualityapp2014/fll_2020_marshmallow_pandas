@@ -62,5 +62,12 @@ def run():
     motor_med_left.brake()
 
 
+def test_attachment():
+    motor_med_right.run_angle(1000, -1180, wait=False)    
+    wait(2500)
+    motor_med_right.run_angle(1000, 1180, wait=False)
+    wait(500)
+
 if __name__ == "__main__":
-    run()
+    #run()
+    pass

@@ -19,13 +19,15 @@ def hang_health_unit(r):
 
 
 def push_step_counter(r):
-    # Push step counter
+    # Move to the step counter
     r.turn(30, 10, 50)
     r.move(110, 100)
     r.turn(2, 10, 30)
 
-    # Lower the arm at the end to avoid health unit stuck on step counter
+    # Push the step counter slowly
     r.move(160, 20, gyro_angle=0)
+    # Lower the arm at the end to prepare passing the bridge
+    # and avoid health unit stuck on step counter
     motor_med_right.run_angle(1000, 1100, wait=False)
     r.move(60, 20, gyro_angle=0)
 
