@@ -107,7 +107,7 @@ class Robot:
     def move(self, distance, speed, gyro_pid=None, gyro_angle=None, terminate=None, stop=False):
         self.reset()
         target_angle = gyro_angle if gyro_angle is not None else gyro.angle()
-        print("Move:", distance, speed, target_angle)
+        print("Move:", distance, speed, target_angle, gyro.angle())
 
         direction = sign(distance)
         target = direction * distance
