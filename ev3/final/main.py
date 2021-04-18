@@ -4,7 +4,6 @@ from config import *
 import run_01
 import run_02
 import run_03
-import run_04
 
 
 def run(number):
@@ -14,8 +13,6 @@ def run(number):
         run_02.run()
     if number == 3:
         run_03.run()
-    if number == 4:
-        run_04.run()
 
 
 def main():
@@ -34,7 +31,7 @@ def main():
             number += 1
             ev3.screen.print("Run", number)
         elif Button.DOWN in buttons:
-            if number < 4:
+            if number < 3:
                 number += 1
                 ev3.screen.print("Run", number)
                 wait(250)

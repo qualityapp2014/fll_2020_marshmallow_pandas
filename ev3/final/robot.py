@@ -1,5 +1,6 @@
 #!/usr/bin/env pybricks-micropython
 import math
+import time
 
 from config import *
 
@@ -69,6 +70,7 @@ class Robot:
         self.speed = 0
         self.speed_last = 0
         self.turn_rate = 0
+        self.last_ts = time.time()
         robot.stop()
 
     def stop(self, stop=True):
@@ -98,11 +100,16 @@ class Robot:
 
         # Skip update if not catching up
         if abs(self.speed_last - state[1]) > self.accel:
-            return
+            # Wait at most 1 second to break the dead loop
+            if (time.time() - self.last_ts) < 1:
+                return
+            # Reset last speed based on state to recover
+            self.speed_last = state[1]
 
         delta = clip(self.speed - self.speed_last, -self.accel, self.accel)
         self.speed_last += delta
         robot.drive(self.speed_last, self.turn_rate)
+        self.last_ts = time.time()
         
     def move(self, distance, speed, gyro_pid=None, gyro_angle=None, terminate=None, stop=False):
         self.reset()
