@@ -2,20 +2,6 @@
 from robot import *
 
 
-def run():
-    gyro.reset_angle(0)
-
-    bench()
-    basketball()
-    boccia()
-    health_unit()
-
-    # Turn and move to the bench
-    motor_med_left.brake()
-    motor_med_right.brake()
-    motor_med_left.run_angle(1000, 800)
-
-
 def bench(debug=False):
     print("Mission - Bench")
     if debug:
@@ -105,6 +91,20 @@ def health_unit(debug=False):
     r.move(100, 200, gyro_angle=-243)
     r.turn(-270, 200, 20)
     r.move(40, 200, stop=True)
+
+
+def run():
+    gyro.reset_angle(0)
+
+    bench()
+    basketball()
+    boccia()
+    health_unit()
+
+    # Turn and move to the bench
+    motor_med_left.brake()
+    motor_med_right.brake()
+    motor_med_left.run_angle(1000, 800)
 
 
 if __name__ == "__main__":
