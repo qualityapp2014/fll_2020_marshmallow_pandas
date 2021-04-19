@@ -58,17 +58,17 @@ def row_machine(reset=False):
 
     # Move back to the lane
     r.move(-60, 100, gyro_angle=-45)
-    motor_med_right.run_angle(1000, -2100, wait=False)
+    motor_med_right.run_angle(1000, -2000, wait=False)
     r.turn(-12, 100, 50)
 
     # Follow the lane and turn to row machine
-    r.follow(320, 130)
+    r.follow(320, 150)
     r.turn(-88, 100, 50)
-    r.move(180, 120, gyro_angle=-90)
+    r.move(170, 200, gyro_angle=-90)
     r.turn(2, 0, 50, stop=True)
 
     # Move close and pull the tire out
-    motor_med_right.run_angle(1000, 2000)
+    motor_med_right.run_angle(1000, 1900)
     r.turn(2, -10, 20, stop=True)
     motor_med_right.run_angle(1000, 500, wait=False)
     wait(400)
@@ -89,8 +89,8 @@ def weight_machine(reset=False):
     wait(600)
 
     r.turn(-87, 30, 50)
-    r.move(170, 120, gyro_angle=-90)
-    r.turn(-72, 20, 30, stop=True)
+    r.move(160, 150, gyro_angle=-90)
+    r.turn(-72, 20, 50, stop=True)
 
     # Press down weight machine
     motor_med_right.run_angle(1000, 1400)
@@ -112,9 +112,9 @@ def tire_flip_large(reset=False):
     motor_med_right.run_angle(1000, -1200, wait=False)
     r.move(-40, 80, gyro_angle=-70)
     
-    r.turn(-120, -30, 50)
+    r.turn(-120, -30, 60)
     motor_med_right.run_angle(1000, 1200, wait=False)
-    r.turn(-219, -20, 50)
+    r.turn(-219, -20, 60)
     r.move(-35, 50, gyro_angle=-223, stop=True)
 
     # Flip the tire
@@ -139,12 +139,12 @@ def treadmill(reset=False):
 
     # Back off and turn back
     motor_med_right.run_angle(1000, -2000, wait=False)
-    r.move(-90, 150, gyro_angle=-225)
-    r.turn(-295, 150, 50)
+    r.move(-80, 200, gyro_angle=-225)
+    r.turn(-295, 200, 60)
     r.move(230, 200, gyro_angle=-300)
 
     # Back off to treadmill
-    r.turn(-270, 150, 50)
+    r.turn(-270, 200, 60)
     r.turn(-195, 30, 50, stop=True)
     wait(200)
     motor_med_right.run_angle(1000, 2000, wait=False)
@@ -169,7 +169,7 @@ def health_unit(reset=False):
     r.move(100, 100, gyro_angle=-180)
     motor_med_right.run_angle(1000, 800, wait=False)
     motor_med_left.run_angle(1000, 300, wait=False)
-    r.follow(660 + distance_delta, 150)
+    r.follow(660 + distance_delta, 200)
 
     r.turn(-122, -30, 50)
     r.move(40, 30, gyro_angle=-118, stop=True)
