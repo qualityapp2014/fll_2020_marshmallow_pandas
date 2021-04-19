@@ -15,11 +15,9 @@ def step_counter(reset=False):
 
     # Move straight to step counter
     motor_med_right.run_angle(1000, 2400, wait=False)
-    r.move(810, 300, gyro_angle=1)
+    r.move(810, 300, gyro_angle=2)
     # Slow down to push to the end
-    r.move(270, 120, gyro_angle=1)
-    robot.drive(60, 0)
-    wait(500)
+    r.move(270, 120, gyro_angle=0)
     fast_stop()
 
     if reset:
@@ -87,7 +85,7 @@ def weight_machine(reset=False):
         gyro.reset_angle(0)
 
     # Turn to weight machine
-    motor_med_right.run_angle(1000, -3300, wait=False)
+    motor_med_right.run_angle(1000, -3000, wait=False)
     wait(600)
 
     r.turn(-87, 30, 50)
@@ -101,8 +99,8 @@ def weight_machine(reset=False):
     wait(300)
     
     if reset:
-        # Total = 3300
-        motor_med_right.run_angle(1000, 1300, wait=False)
+        # Total = 3600
+        motor_med_right.run_angle(1000, 1000, wait=False)
 
 
 def tire_flip_large(reset=False):
@@ -130,8 +128,8 @@ def tire_flip_large(reset=False):
     r.move(90, 200, gyro_angle=-250, stop=True)
 
     if reset:
-        # Total = 4100
-        motor_med_right.run_angle(1000, -800, wait=False)
+        # Total = 4200
+        motor_med_right.run_angle(1000, -600, wait=False)
 
 
 def treadmill(reset=False):
@@ -142,19 +140,19 @@ def treadmill(reset=False):
     # Back off and turn back
     motor_med_right.run_angle(1000, -2000, wait=False)
     r.move(-90, 150, gyro_angle=-225)
-    r.turn(-295, 100, 30)
-    r.move(240, 150, gyro_angle=-300)
+    r.turn(-295, 150, 50)
+    r.move(230, 200, gyro_angle=-300)
 
     # Back off to treadmill
-    r.turn(-270, 100, 30)
-    r.turn(-195, 20, 50, stop=True)
-    wait(300)
+    r.turn(-270, 150, 50)
+    r.turn(-195, 30, 50, stop=True)
+    wait(200)
     motor_med_right.run_angle(1000, 2000, wait=False)
     r.move(-160, 200, gyro_angle=-183, stop=True)
 
     # Spin the treadmill
     robot.stop()
-    motor_left.run_time(-1000, 2500)
+    motor_left.run_time(-1000, 2000)
 
 
 def health_unit(reset=False):
@@ -169,11 +167,11 @@ def health_unit(reset=False):
 
     # Move off treadmill
     r.move(100, 100, gyro_angle=-180)
-    motor_med_right.run_angle(1000, 900, wait=False)
+    motor_med_right.run_angle(1000, 800, wait=False)
     motor_med_left.run_angle(1000, 300, wait=False)
     r.follow(660 + distance_delta, 150)
 
-    r.turn(-122, -20, 40)
+    r.turn(-122, -30, 50)
     r.move(40, 30, gyro_angle=-118, stop=True)
 
     # Hang health unit
@@ -181,7 +179,7 @@ def health_unit(reset=False):
 
     if reset:
         # Total = 5000
-        motor_med_right.run_angle(1000, -900, wait=False)
+        motor_med_right.run_angle(1000, -800, wait=False)
         motor_med_left.run_angle(1000, -1000, wait=False)
 
 
@@ -192,14 +190,13 @@ def dance_floor(reset=False):
 
     # Back off and turn to pass the bridge
     r.move(-60, 60, gyro_angle=-118)
-    motor_med_left.run_angle(1000, 4000, wait=False)
-    r.move(-60, 60, gyro_angle=-118)
-    r.turn(-100, 100, 20)
+    motor_med_left.run_angle(1000, 2000, wait=False)
+    r.move(-60, 150, gyro_angle=-118)
+    r.turn(-100, 150, 30)
     r.move(120, 200, gyro_angle=-96)
-    motor_med_left.run_angle(1000, -5000, wait=False)
     motor_med_right.run_angle(1000, -5000, wait=False)
     r.move(200, 200, gyro_angle=-96)
-
+    motor_med_left.run_angle(1000, -3000, wait=False)
 
     # Turn to dance floor
     r.turn(-140, 200, 50)
