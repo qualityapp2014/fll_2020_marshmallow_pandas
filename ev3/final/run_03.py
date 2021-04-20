@@ -113,7 +113,7 @@ def weight_machine(reset=False):
     r.turn(-110, 0, 50)
     r.move(140, 150, gyro_angle=-115)
     r.turn(-92, 150, 50)
-    r.move(195, 150, gyro_angle=-90)
+    r.move(200, 150, gyro_angle=-90)
     r.turn(-73, 30, 50, stop=True)
 
     # Press down weight machine
@@ -141,8 +141,8 @@ def tire_flip_large(reset=False):
     
     r.turn(-120, -10, 60)
     motor_med_right.run_angle(1000, 1200, wait=False)
-    r.turn(-208, -10, 60)
-    r.move(-20, 50, gyro_angle=-210, stop=True)
+    r.turn(-216, 0, 60, stop=True)
+    #r.move(-10, 50, gyro_angle=-218, stop=True)
 
     # Flip the tire
     motor_med_right.run_angle(1000, 800, wait=False)
@@ -152,8 +152,8 @@ def tire_flip_large(reset=False):
     fast_stop()
 
     # Push the tire in
-    r.move(150, 200, gyro_angle=-200)
-    r.move(100, 200, gyro_angle=-220, stop=True)
+    r.move(120, 200, gyro_angle=-205)
+    r.move(120, 200, gyro_angle=-230, stop=True)
 
     if reset:
         # Left = 5000, Right = 4300
@@ -166,17 +166,17 @@ def treadmill(reset=False):
         gyro.reset_angle(-216)
 
     # Back off and turn back
+    r.move(-50, 200, gyro_angle=-216)
     motor_med_right.run_angle(1000, -2000, wait=False)
-    r.move(-30, 200, gyro_angle=-216)
 
     # Move to treadmill
-    r.turn(-280, 200, 50)
-    r.move(420, 200, gyro_angle=-284)
+    r.turn(-278, 200, 50)
+    r.move(480, 200, gyro_angle=-283)
     r.turn(-182, -30, 50, stop=True)
 
     # Back off to treadmill
     motor_med_right.run_angle(1000, 2000, wait=False)
-    r.move(-100, 200, gyro_angle=-180, stop=True)
+    r.move(-120, 200, gyro_angle=-180, stop=True)
 
     # Spin the treadmill
     robot.stop()
@@ -192,16 +192,16 @@ def dance_floor(reset=False):
     r.move(80, 100, gyro_angle=-180)
     r.follow(80, 100)
     motor_med_right.run_angle(1000, 700, wait=False)
-    r.move(400, 300, gyro_angle=-176)
+    r.move(420, 300, gyro_angle=-176)
     r.turn(-105, 200, 100)
-    r.move(140, 200, gyro_angle=-93)
+    r.move(140, 200, gyro_angle=-95)
     motor_med_right.run_angle(1000, -5000, wait=False)
     motor_med_left.run_angle(1000, -5000, wait=False)
     r.move(180, 200, gyro_angle=-90)
     
     # Turn to dance floor
     r.turn(-125, 200, 50)
-    r.move(160, 200, gyro_angle=-130, stop=True)
+    r.move(100, 200, gyro_angle=-130, stop=True)
 
     if reset:
         wait(5000)

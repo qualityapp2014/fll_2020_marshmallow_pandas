@@ -23,18 +23,18 @@ def basketball(reset=False):
     r.turn(-171, 150, 50)
 
     # Follow line to control position
-    r.follow(100, 150)
+    r.follow(100, 100)
 
     # Measure distance to flip the cube
     distance = ultrasonic.distance()
     print("Distance", distance)
-    distance_next = clip(50 + 740 - distance, 0, 200)
-    r.follow(distance_next, 60, stop=True)
+    distance_next = clip(45 + 740 - distance, 0, 200)
+    r.follow(distance_next, 50, stop=True)
     print("Distance", ultrasonic.distance())
 
-    r.move(-50, 150)
+    r.move(-50, 100)
     r.turn(-216, 30, 50)
-    r.move(70, 150, gyro_angle=-218)
+    r.move(60, 150, gyro_angle=-218)
     r.move(20, 50, gyro_angle=-218, stop=True)
 
     # Lift crate
@@ -56,7 +56,7 @@ def boccia(reset=False):
     # Turn to Boccia
     r.move(-70, 150, gyro_angle=-224)
     r.turn(-170, -100, 60)
-    r.turn(-92, 100, 60)
+    r.turn(-90, 100, 60)
     
     # Align by following the line
     r.follow(150, 150, use_left=False)
