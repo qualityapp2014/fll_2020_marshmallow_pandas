@@ -70,7 +70,7 @@ def boccia(reset=False):
     # Back off and turn to flip the boccia
     r.move(-50, 150, gyro_angle=-165)
     r.turn(-138, -20, 60)
-    r.move(130, 150, gyro_angle=-135)
+    r.move(120, 150, gyro_angle=-135)
     
     r.move(-40, 100, gyro_angle=-138, stop=True)
     motor_med_right.run_angle(1000, -1700)
