@@ -19,7 +19,7 @@ def basketball(reset=False):
     # Back off and turn to lane
     r.move(40, 200, gyro_angle=0)
     r.turn(-127, 100, 60)
-    r.move(220, 150, gyro_angle=-130)
+    r.move(250, 150, gyro_angle=-130)
     r.turn(-171, 150, 50)
 
     # Follow line to control position
@@ -34,8 +34,8 @@ def basketball(reset=False):
 
     r.move(-50, 100)
     r.turn(-216, 30, 50)
-    r.move(60, 150, gyro_angle=-218)
-    r.move(20, 50, gyro_angle=-218, stop=True)
+    r.move(70, 150, gyro_angle=-218)
+    r.move(25, 50, gyro_angle=-218, stop=True)
 
     # Lift crate
     motor_med_left.run_angle(1000, -1150, wait=False)
@@ -54,12 +54,12 @@ def boccia(reset=False):
         gyro.reset_angle(-224)
 
     # Turn to Boccia
-    r.move(-70, 150, gyro_angle=-224)
+    r.move(-80, 100, gyro_angle=-224)
     r.turn(-170, -100, 60)
-    r.turn(-90, 100, 60)
+    r.turn(-94, 100, 60)
     
     # Align by following the line
-    r.follow(150, 150, use_left=False)
+    r.follow(180, 150, use_left=False)
     
     # Turn and drop the cubes
     r.turn(-162, 40, 80)
@@ -68,11 +68,11 @@ def boccia(reset=False):
     motor_med_right.run_angle(1000, -500, wait=False)
 
     # Back off and turn to flip the boccia
-    r.move(-50, 150, gyro_angle=-165)
-    r.turn(-138, -20, 60)
-    r.move(120, 150, gyro_angle=-135)
+    r.move(-60, 150, gyro_angle=-165)
+    r.turn(-135, -20, 60)
+    r.move(90, 150, gyro_angle=-133)
     
-    r.move(-40, 100, gyro_angle=-138, stop=True)
+    r.move(-30, 100, gyro_angle=-133, stop=True)
     motor_med_right.run_angle(1000, -1700)
     motor_med_right.run_angle(1000, 900, wait=False)
 
@@ -84,16 +84,16 @@ def health_unit(reset=False):
 
     # Turn back to push health unit back
     r.turn(-180, -100, 70)
-    r.turn(-262, 150, 75)
-    r.move(150, 200, gyro_angle=-264)
-    r.move(50, 100, gyro_angle=-263)
+    r.turn(-252, 150, 75)
+    r.move(150, 200, gyro_angle=-254)
+    r.move(50, 100, gyro_angle=-256)
     r.follow(50, 100)
     r.follow(140, 150)
 
     r.turn(-240, 200, 40)
     r.move(100, 200, gyro_angle=-243)
     r.turn(-260, 200, 30)
-    r.move(100, 300, stop=True)
+    r.move(130, 300, stop=True)
 
     motor_med_left.run_angle(1000, 800)
     if reset:
@@ -114,4 +114,5 @@ def run():
 
 
 if __name__ == "__main__":
+    #boccia(True)
     run()
