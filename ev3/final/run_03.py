@@ -14,10 +14,14 @@ def step_counter(reset=False):
         gyro.reset_angle(0)
 
     # Move straight to step counter
+    motor_med_right.run_angle(1000, 2000, wait=False)
     r.move(800, 300, gyro_angle=2)
     # Slow down to push to the end
-    r.move(280, 120, gyro_angle=-1)
-    fast_stop()
+    r.move(280, 120, gyro_angle=-1, stop=True)
+
+    if reset:
+        # Left = 0, Right = 2000
+        motor_med_right.run_angle(1000, -2000)
 
 
 def health_unit(reset=False):
@@ -36,24 +40,51 @@ def health_unit(reset=False):
     motor_med_left.run_angle(1000, 700)
 
     if reset:
-        # Left = 1000, Right = 0
+        # Left = 1000, Right = 2000
         wait(1000)
         motor_med_left.run_angle(1000, -1000)
+
+
+def tire_flip_small(reset=False):
+    print('tire_flip_small')
+    if reset:
+        gyro.reset_angle(-67)
+
+    # Back off and turn to tire
+    r.move(-60, 100, gyro_angle=-65)
+    motor_med_right.run_angle(1000, 1800, wait=False)
+
+    r.turn(-50, 30, 50)
+    r.move(100, 150, gyro_angle=-55)
+    r.move(40, 50, gyro_angle=-55, stop=True)
+
+    # Flip the tire
+    motor_med_right.run_angle(1000, 600, wait=False)
+    wait(500)
+    robot.drive(-300, 0)
+    wait(500)
+    fast_stop()
+
+    # Push the tire in
+    r.move(110, 150, gyro_angle=-40, stop=True)
+    if reset:
+        # Left = 1000, Right = 4400
+        motor_med_right.run_angle(1000, -2400, wait=False)
 
 
 def row_machine(reset=False):
     print('row_machine')
     if reset:
-        gyro.reset_angle(-65)
+        gyro.reset_angle(-40)
 
     # Move back to the lane
-    r.move(-60, 100, gyro_angle=-65)
+    r.move(-50, 100, gyro_angle=-40)
     motor_med_left.run_angle(1000, 3000, wait=False)
-    motor_med_right.run_angle(1000, 1500, wait=False)
-    r.turn(-3, 150, 40)
+    motor_med_right.run_angle(1000, -2900, wait=False)
+    r.turn(-3, 140, 35)
 
     # Follow the lane and turn to row machine
-    r.follow(225, 150)
+    r.follow(220, 150)
     r.turn(-37, 100, 50)
     r.move(130, 150, gyro_angle=-40)
     r.move(30, 50, gyro_angle=-40, stop=True)
@@ -65,34 +96,8 @@ def row_machine(reset=False):
 
     if reset:
         # Left = 4700, Right = 1500
-        motor_med_right.run_angle(1000, -1500, wait=False)
+        motor_med_right.run_angle(1000, 2900, wait=False)
         motor_med_left.run_angle(1000, -3700, wait=False)
-
-
-def tire_flip_small(reset=False):
-    print('tire_flip_small')
-    if reset:
-        gyro.reset_angle(0)
-
-    # Back off from step counter and turn to lane
-    r.move(-60, 120, gyro_angle=0)
-    r.turn(-10, 70, 30)
-    motor_med_right.run_angle(1000, 1300, wait=False)
-    r.turn(-52, 70, 30)
-    r.move(130, 120, gyro_angle=-54)
-    r.move(30, 30, gyro_angle=-54, stop=True)
-
-    # Flip the tire
-    motor_med_right.run_angle(1000, 500)
-    robot.drive(-300, 0)
-    wait(400)
-    fast_stop()
-
-    # Push the tire in
-    r.move(110, 150, gyro_angle=-45, stop=True)
-    if reset:
-        # Total = 4200
-        motor_med_right.run_angle(1000, -1800, wait=False)
 
 
 def weight_machine(reset=False):
@@ -214,6 +219,7 @@ def run():
     
     step_counter()
     health_unit()
+    tire_flip_small()
     row_machine()
     weight_machine()
     tire_flip_large()
