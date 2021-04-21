@@ -19,7 +19,7 @@ def basketball(reset=False):
     # Back off and turn to lane
     r.move(40, 200, gyro_angle=0)
     r.turn(-127, 100, 60)
-    r.move(235, 150, gyro_angle=-130)
+    r.move(250, 150, gyro_angle=-130)
     r.turn(-171, 150, 50)
 
     # Follow line to control position
@@ -29,13 +29,13 @@ def basketball(reset=False):
     distance = ultrasonic.distance()
     print("Distance", distance)
     distance_next = clip(50 + 740 - distance, 0, 200)
-    r.follow(distance_next, 50, stop=True)
+    r.follow(distance_next, 60, stop=True)
     print("Distance", ultrasonic.distance())
 
-    r.move(-50, 100)
-    r.turn(-220, 30, 50)
-    r.move(70, 120, gyro_angle=-222)
-    r.move(30, 50, gyro_angle=-222, stop=True)
+    r.move(-60, 100)
+    r.turn(-218, 30, 50)
+    r.move(80, 120, gyro_angle=-220)
+    r.move(30, 50, gyro_angle=-220, stop=True)
 
     # Lift crate
     motor_med_left.run_angle(1000, -1150, wait=False)
@@ -54,9 +54,9 @@ def boccia(reset=False):
         gyro.reset_angle(-224)
 
     # Turn to Boccia
-    r.move(-50, 100, gyro_angle=-224)
+    r.move(-80, 120, gyro_angle=-224)
     r.turn(-170, -100, 60)
-    r.turn(-95, 150, 60)
+    r.turn(-91, 120, 60)
     
     # Align by following the line
     r.follow(180, 150, use_left=False)
@@ -69,10 +69,10 @@ def boccia(reset=False):
 
     # Back off and turn to flip the boccia
     r.move(-60, 100, gyro_angle=-165)
-    r.turn(-135, -20, 60)
-    r.move(120, 100, gyro_angle=-133)
+    r.turn(-132, -20, 60)
+    r.move(120, 100, gyro_angle=-130)
     
-    r.move(-40, 100, gyro_angle=-133, stop=True)
+    r.move(-40, 100, gyro_angle=-130, stop=True)
     motor_med_right.run_angle(1000, -1700)
     motor_med_right.run_angle(1000, 900, wait=False)
 
@@ -84,16 +84,16 @@ def health_unit(reset=False):
 
     # Turn back to push health unit back
     r.turn(-180, -100, 70)
-    r.turn(-261, 150, 75)
-    r.move(150, 200, gyro_angle=-263)
-    r.move(50, 100, gyro_angle=-265)
+    r.turn(-256, 150, 75)
+    r.move(150, 200, gyro_angle=-258)
+    r.move(50, 100, gyro_angle=-260)
     r.follow(50, 100)
     r.follow(140, 150)
 
     r.turn(-240, 200, 40)
     r.move(100, 200, gyro_angle=-243)
     r.turn(-260, 200, 30)
-    r.move(130, 300, stop=True)
+    r.move(120, 300, stop=True)
 
     motor_med_left.run_angle(1000, 800)
     if reset:

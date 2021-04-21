@@ -60,7 +60,7 @@ def tire_flip_small(reset=False):
 
     # Flip the tire
     motor_med_right.run_angle(1000, 800, wait=False)
-    wait(600)
+    wait(500)
     robot.drive(-300, 0)
     wait(500)
     fast_stop()
@@ -84,10 +84,10 @@ def row_machine(reset=False):
     r.turn(1, 140, 35)
 
     # Follow the lane and turn to row machine
-    r.follow(235, 150)
+    r.follow(225, 150)
     r.turn(-37, 100, 50)
-    r.move(110, 150, gyro_angle=-40)
-    r.move(25, 50, gyro_angle=-40, stop=True)
+    r.move(130, 150, gyro_angle=-39)
+    r.move(35, 50, gyro_angle=-39, stop=True)
 
     # Pull the tire out
     motor_med_left.run_angle(1000, 300)
@@ -142,7 +142,7 @@ def tire_flip_large(reset=False):
     r.turn(-120, -10, 60)
     motor_med_right.run_angle(1000, 1200, wait=False)
     r.turn(-216, 0, 60, stop=True)
-    #r.move(-10, 50, gyro_angle=-218, stop=True)
+    #r.move(-15, 50, gyro_angle=-218, stop=True)
 
     # Flip the tire
     motor_med_right.run_angle(1000, 800, wait=False)
@@ -176,7 +176,7 @@ def treadmill(reset=False):
 
     # Back off to treadmill
     motor_med_right.run_angle(1000, 2000, wait=False)
-    r.move(-120, 200, gyro_angle=-180, stop=True)
+    r.move(-110, 200, gyro_angle=-180, stop=True)
 
     # Spin the treadmill
     robot.stop()
@@ -192,16 +192,16 @@ def dance_floor(reset=False):
     r.move(80, 100, gyro_angle=-180)
     r.follow(80, 100)
     motor_med_right.run_angle(1000, 700, wait=False)
-    r.move(420, 300, gyro_angle=-176)
-    r.turn(-105, 200, 100)
-    r.move(140, 200, gyro_angle=-95)
+    r.move(430, 300, gyro_angle=-176)
+    r.turn(-108, 200, 100)
+    r.move(140, 200, gyro_angle=-97)
     motor_med_right.run_angle(1000, -5000, wait=False)
     motor_med_left.run_angle(1000, -5000, wait=False)
-    r.move(180, 200, gyro_angle=-90)
+    r.move(120, 200, gyro_angle=-90)
     
     # Turn to dance floor
-    r.turn(-125, 200, 50)
-    r.move(100, 200, gyro_angle=-130, stop=True)
+    r.turn(-135, 200, 50)
+    r.move(130, 200, gyro_angle=-140, stop=True)
 
     if reset:
         wait(5000)
