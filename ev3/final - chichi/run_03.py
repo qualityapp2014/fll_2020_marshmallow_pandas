@@ -86,7 +86,7 @@ def row_machine(reset=False):
     # Follow the lane and turn to row machine
     r.follow(220, 100)
     r.turn(-37, 100, 50)
-    r.move(120, 150, gyro_angle=-39)
+    r.move(130, 100, gyro_angle=-39)
     r.move(40, 50, gyro_angle=-39, stop=True)
 
     # Pull the tire out
@@ -107,7 +107,7 @@ def weight_machine(reset=False):
 
     # Turn to weight machine
     motor_med_left.run_angle(1000, -800, wait=False)
-    wait(100)
+    wait(200)
 
     r.move(-30, 50, gyro_angle=-79)
     r.turn(-112, 0, 50)
