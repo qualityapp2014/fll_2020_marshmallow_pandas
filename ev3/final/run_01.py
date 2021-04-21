@@ -19,23 +19,16 @@ def basketball(reset=False):
     # Back off and turn to lane
     r.move(40, 200, gyro_angle=0)
     r.turn(-127, 100, 60)
-    r.move(235, 150, gyro_angle=-130)
+    r.move(240, 150, gyro_angle=-130)
     r.turn(-171, 150, 50)
 
     # Follow line to control position
-    r.follow(100, 100)
-
-    # Measure distance to flip the cube
-    distance = ultrasonic.distance()
-    print("Distance", distance)
-    distance_next = clip(50 + 740 - distance, 0, 200)
-    r.follow(distance_next, 50, stop=True)
-    print("Distance", ultrasonic.distance())
+    r.follow(130, 100, stop=True)
 
     r.move(-50, 100)
     r.turn(-220, 30, 50)
-    r.move(70, 120, gyro_angle=-222)
-    r.move(30, 50, gyro_angle=-222, stop=True)
+    r.move(60, 100, gyro_angle=-222)
+    r.move(35, 50, gyro_angle=-222, stop=True)
 
     # Lift crate
     motor_med_left.run_angle(1000, -1150, wait=False)
@@ -54,46 +47,42 @@ def boccia(reset=False):
         gyro.reset_angle(-224)
 
     # Turn to Boccia
-    r.move(-50, 100, gyro_angle=-224)
+    r.move(-100, 100, gyro_angle=-224)
     r.turn(-170, -100, 60)
-    r.turn(-95, 150, 60)
+    r.turn(-142, 150, 60)
+    r.move(270, 260, gyro_angle=-140, stop=True)
     
-    # Align by following the line
-    r.follow(180, 150, use_left=False)
-    
-    # Turn and drop the cubes
-    r.turn(-162, 40, 80)
-    r.move(50, 150, gyro_angle=-165, stop=True)
+    # Drop the cubes
     motor_med_right.run_angle(1000, 1300)
-    motor_med_right.run_angle(1000, -500, wait=False)
+    motor_med_right.run_angle(1000, -700, wait=False)
 
-    # Back off and turn to flip the boccia
-    r.move(-60, 100, gyro_angle=-165)
-    r.turn(-135, -20, 60)
-    r.move(120, 100, gyro_angle=-133)
-    
-    r.move(-40, 100, gyro_angle=-133, stop=True)
-    motor_med_right.run_angle(1000, -1700)
+    # Turn to flip the boccia
+    r.turn(-150, -150, 30)
+    r.turn(-95, 100, 50)
+    r.move(100, 100, gyro_angle=-90)
+    r.turn(-118, 0, 50)
+    r.move(60, 60, gyro_angle=-120, stop=True)
+    r.move(-70, 100, gyro_angle=-128, stop=True)
+
+    motor_med_right.run_angle(1000, -1500)
     motor_med_right.run_angle(1000, 900, wait=False)
 
 
 def health_unit(reset=False):
     print("Mission - Health Unit")
     if reset:
-        gyro.reset_angle(-135)
+        gyro.reset_angle(-128)
 
     # Turn back to push health unit back
-    r.turn(-180, -100, 70)
-    r.turn(-261, 150, 75)
-    r.move(150, 200, gyro_angle=-263)
-    r.move(50, 100, gyro_angle=-265)
-    r.follow(50, 100)
-    r.follow(140, 150)
+    r.turn(-177, -30, 50)
+    r.move(-100, 100, gyro_angle=-180)
+    r.turn(-265, 100, 50)
+    r.move(320, 200, gyro_angle=-270)
 
     r.turn(-240, 200, 40)
     r.move(100, 200, gyro_angle=-243)
     r.turn(-260, 200, 30)
-    r.move(130, 300, stop=True)
+    r.move(100, 300, stop=True)
 
     motor_med_left.run_angle(1000, 800)
     if reset:
@@ -114,4 +103,5 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    #run()
+    health_unit(True)
