@@ -111,7 +111,7 @@ class Robot:
         robot.drive(self.speed_last, self.turn_rate)
         self.last_ts = time.time()
         
-    def move(self, distance, speed, gyro_pid=None, gyro_angle=None, terminate=None, stop=False):
+    def move(self, distance, speed, gyro_pid=None, gyro_angle=None, terminate=None, stop=False, max_turn_rate=0.2):
         self.reset()
         target_angle = gyro_angle if gyro_angle is not None else gyro.angle()
         print("Move:", distance, speed, target_angle, gyro.angle())
@@ -126,6 +126,8 @@ class Robot:
             if need_terminate(terminate):
                 break
             delta = pid.delta(target_angle - gyro.angle())
+            max_delta = abs(self.speed_last * max_turn_rate)
+            delta = clip(delta, -max_delta, delta)
             self.set_speed(speed_direction, delta)
             self.update()
         self.stop(stop)
