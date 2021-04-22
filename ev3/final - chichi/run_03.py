@@ -117,7 +117,7 @@ def weight_machine(reset=False):
     r.turn(-112, 0, 50)
     r.move(180, 100, gyro_angle=-115)
     r.turn(-96, 100, 50)
-    r.move(220, 100, gyro_angle=-90)
+    r.move(225, 100, gyro_angle=-90)
     r.turn(-74, 0, 30, stop=True)
 
     # Press down weight machine
