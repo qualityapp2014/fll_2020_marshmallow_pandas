@@ -30,7 +30,7 @@ def health_unit(reset=False):
         gyro.reset_angle(0)
 
     # Back off from step counter and turn to bridge
-    r.move(-58, 120, gyro_angle=0)
+    r.move(-60, 100, gyro_angle=0)
     motor_med_left.run_angle(1000, 300, wait=False)
     r.turn(-62, 70, 40)
     r.move(110, 100, gyro_angle=-65)
@@ -86,12 +86,12 @@ def row_machine(reset=False):
     # Follow the lane and turn to row machine
     r.follow(220, 100)
     r.turn(-38, 100, 50)
-    r.move(140, 100, gyro_angle=-40)
+    r.move(135, 100, gyro_angle=-40)
     r.move(30, 50, gyro_angle=-40, stop=True)
 
     # Pull the tire out
-    motor_med_left.run_angle(1000, 300)
-    motor_med_left.run_angle(500, 400, wait=False)
+    motor_med_left.run_angle(1000, 500)
+    motor_med_left.run_angle(500, 200, wait=False)
     r.turn(-75, -20, 30, stop=True)
 
     if reset:
@@ -205,7 +205,7 @@ def dance_floor(reset=False):
     
     # Turn to dance floor
     r.turn(-130, 200, 50)
-    r.move(130, 200, gyro_angle=-135, stop=True)
+    r.move(100, 200, gyro_angle=-135, stop=True)
 
     if reset:
         wait(5000)
