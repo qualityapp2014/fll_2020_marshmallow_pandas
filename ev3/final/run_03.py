@@ -55,8 +55,8 @@ def tire_flip_small(reset=False):
     motor_med_right.run_angle(1000, 1800, wait=False)
 
     r.turn(-50, 30, 50)
-    r.move(120, 150, gyro_angle=-55)
-    r.move(30, 50, gyro_angle=-55, stop=True)
+    r.move(130, 100, gyro_angle=-55)
+    r.move(20, 40, gyro_angle=-55, stop=True)
 
     # Flip the tire
     motor_med_right.run_angle(1000, 800, wait=False)
@@ -84,10 +84,10 @@ def row_machine(reset=False):
     r.turn(1, 140, 35)
 
     # Follow the lane and turn to row machine
-    r.follow(220, 100)
+    r.follow(210, 100)
     r.turn(-37, 100, 50)
     r.move(130, 100, gyro_angle=-39)
-    r.move(40, 50, gyro_angle=-39, stop=True)
+    r.move(35, 50, gyro_angle=-39, stop=True)
 
     # Pull the tire out
     motor_med_left.run_angle(1000, 300)
@@ -113,7 +113,7 @@ def weight_machine(reset=False):
     r.turn(-112, 0, 50)
     r.move(170, 150, gyro_angle=-115)
     r.turn(-95, 150, 50)
-    r.move(190, 150, gyro_angle=-90)
+    r.move(175, 150, gyro_angle=-90)
     r.turn(-76, 30, 50, stop=True)
 
     # Press down weight machine
@@ -141,7 +141,7 @@ def tire_flip_large(reset=False):
     
     r.turn(-120, 0, 60)
     motor_med_right.run_angle(1000, 1200, wait=False)
-    r.turn(-220, 0, 60, stop=True)
+    r.turn(-222, 0, 60, stop=True)
     #r.move(-10, 50, gyro_angle=-223, stop=True)
 
     # Flip the tire

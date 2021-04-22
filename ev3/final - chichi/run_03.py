@@ -30,10 +30,10 @@ def health_unit(reset=False):
         gyro.reset_angle(0)
 
     # Back off from step counter and turn to bridge
-    r.move(-55, 120, gyro_angle=0)
+    r.move(-58, 120, gyro_angle=0)
     motor_med_left.run_angle(1000, 300, wait=False)
     r.turn(-62, 70, 40)
-    r.move(100, 120, gyro_angle=-65)
+    r.move(110, 100, gyro_angle=-65)
     r.move(20, 50, gyro_angle=-65, stop=True)
 
     # Hang health unit
@@ -55,7 +55,7 @@ def tire_flip_small(reset=False):
     motor_med_right.run_angle(1000, 1800, wait=False)
 
     r.turn(-50, 30, 50)
-    r.move(120, 150, gyro_angle=-55)
+    r.move(130, 100, gyro_angle=-55)
     r.move(25, 50, gyro_angle=-55, stop=True)
 
     # Flip the tire
@@ -85,14 +85,14 @@ def row_machine(reset=False):
 
     # Follow the lane and turn to row machine
     r.follow(220, 100)
-    r.turn(-37, 100, 50)
-    r.move(130, 100, gyro_angle=-39)
-    r.move(40, 50, gyro_angle=-39, stop=True)
+    r.turn(-38, 100, 50)
+    r.move(140, 100, gyro_angle=-40)
+    r.move(30, 50, gyro_angle=-40, stop=True)
 
     # Pull the tire out
     motor_med_left.run_angle(1000, 300)
     motor_med_left.run_angle(500, 400, wait=False)
-    r.turn(-76, -20, 30, stop=True)
+    r.turn(-75, -20, 30, stop=True)
 
     if reset:
         # Left = 4700, Right = 1500
@@ -111,10 +111,10 @@ def weight_machine(reset=False):
 
     r.move(-30, 50, gyro_angle=-79)
     r.turn(-112, 0, 50)
-    r.move(170, 150, gyro_angle=-115)
-    r.turn(-95, 150, 50)
-    r.move(190, 150, gyro_angle=-90)
-    r.turn(-76, 30, 50, stop=True)
+    r.move(180, 100, gyro_angle=-115)
+    r.turn(-96, 100, 50)
+    r.move(220, 100, gyro_angle=-90)
+    r.turn(-76, 0, 30, stop=True)
 
     # Press down weight machine
     motor_med_left.run_angle(1000, 1100, wait=False)
@@ -141,7 +141,7 @@ def tire_flip_large(reset=False):
     
     r.turn(-120, 0, 60)
     motor_med_right.run_angle(1000, 1200, wait=False)
-    r.turn(-220, 0, 60, stop=True)
+    r.turn(-220, -10, 60, stop=True)
     #r.move(-10, 50, gyro_angle=-223, stop=True)
 
     # Flip the tire
@@ -171,7 +171,7 @@ def treadmill(reset=False):
 
     # Move to treadmill
     r.turn(-278, 200, 50)
-    r.move(490, 200, gyro_angle=-283)
+    r.move(465, 200, gyro_angle=-283)
     r.turn(-182, -30, 50, stop=True)
 
     # Back off to treadmill

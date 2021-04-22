@@ -56,7 +56,7 @@ def boccia(reset=False):
     # Turn to Boccia
     r.move(-90, 120, gyro_angle=-224)
     r.turn(-170, -100, 60)
-    r.turn(-91, 120, 60)
+    r.turn(-93, 120, 60)
     
     # Align by following the line
     r.follow(180, 150, use_left=False)
